@@ -74,10 +74,4 @@
 </script>
 
 <style scoped>
-    img{
-        width: 24px;
-        height: 24px;
-        margin-top: 5px;
-        vertical-align: middle;
-    }
 </style>
