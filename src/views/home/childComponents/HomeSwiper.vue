@@ -4,7 +4,7 @@
             <swiper-item v-for="item of banners" :key="item.link">
                 <template #default>
                     <a :href="item.link">
-                        <img :src="item.image" alt="">
+                        <img :src="item.image" alt="" @load="imageLoad">
                     </a>
                 </template>
             </swiper-item>
@@ -24,9 +24,23 @@
                 }
             }
         },
+        data() {
+            return {
+                isLoad: false
+            }
+        },
         components: {
             Swiper,
             SwiperItem
+        },
+        methods: {
+            imageLoad() {
+                if (!this.isLoad) {
+                    console.log('11111111');
+                    this.$emit('swiper-image-load')
+                    this.isLoad = true
+                }
+            }
         }
     }
 </script>
