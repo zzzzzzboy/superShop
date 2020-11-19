@@ -1,39 +1,195 @@
 <template>
-    <div id="home">
+    <div id="home" class="wrapper">
         <nav-bar class="home-nav">
-            <template #center>
+            <template #cemter>
                 购物街
             </template>
         </nav-bar>
-        <home-swiper :banners="banners"></home-swiper>
-        <recommend-view :recommends="recommends"></recommend-view>
-        <feature-view></feature-view>
-        <tab-control class="tab-control" @tabClick="tabClick"
-                     :titles="['流行', '新款', '精选']"></tab-control>
-        <goods-list :goods="showGoods"></goods-list>
+        <scroll class="content"
+                ref="scroll"
+                :probe-type="3"
+                @scroll="contentScroll"
+                :pull-up-load="true"
+                @pullingUp="loadMore">
+            <home-swiper :banners="banners"/>
+            <recommend-view :recommends="recommends"/>
+            <feature-view/>
+            <tab-control class="tab-control"
+                         :titles="['流行', '新款', '精选']"
+                         @tabClick="tabClick"/>
+            <good-list :goods="showGoods"/>
+            <ul>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+        </scroll>
+        <back-top @click.native="backClick" v-show="isShowBackTop"/>
     </div>
 </template>
 
 <script>
-    import NavBar from "components/common/navBar/NavBar"
-    import TabControl from "components/content/tabControl/TabControl"
-    import GoodsList from "components/content/goods/GoodsList"
+    import HomeSwiper from './childComponents/HomeSwiper'
+    import RecommendView from './childComponents/RecommendView'
+    import FeatureView from './childComponents/FeatureView'
 
-    import HomeSwiper from "./childComponents/HomeSwiper"
-    import RecommendView from "./childComponents/RecommendView"
-    import FeatureView from "./childComponents/FeatureView"
+    import NavBar from 'components/common/navBar/NavBar'
+    import TabControl from 'components/content/tabControl/TabControl'
+    import GoodList from 'components/content/goods/GoodsList'
+    import Scroll from 'components/common/scroll/Scroll'
+    import BackTop from 'components/content/backTop/BackTop'
 
-    import {getHomeMultidata, getHomeGoods} from "network/home";
+    import { getHomeMultidata, getHomeGoods } from "network/home"
 
     export default {
         name: "Home",
         components: {
-            NavBar,
-            TabControl,
             HomeSwiper,
             RecommendView,
             FeatureView,
-            GoodsList
+            NavBar,
+            TabControl,
+            GoodList,
+            Scroll,
+            BackTop
         },
         data() {
             return {
@@ -101,7 +257,8 @@
             getHomeGoods(type) {
                 const page = this.goods[type].page + 1
                 getHomeGoods(type, page).then(res => {
-                    this.goods[type].list.push(...res.data.list)
+                    console.log(res)
+                    // this.goods[type].list.push(...res.data.list)
                     this.goods[type].page += 1
 
                     this.$refs.scroll.finishPullUp()
@@ -113,8 +270,7 @@
 
 <style scoped>
     #home {
-        padding-top: 44px;
-        margin-bottom: 100px;
+        /*padding-top: 44px;*/
         height: 100vh;
         position: relative;
     }
@@ -145,4 +301,10 @@
         left: 0;
         right: 0;
     }
+
+    /*.content {*/
+    /*height: calc(100% - 93px);*/
+    /*overflow: hidden;*/
+    /*margin-top: 44px;*/
+    /*}*/
 </style>
