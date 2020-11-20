@@ -130,7 +130,6 @@
             },
             swiperImageLoad() {
                 this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
-                console.log(this.tabOffsetTop);
             },
             /**
              * 网络请求相关的方法

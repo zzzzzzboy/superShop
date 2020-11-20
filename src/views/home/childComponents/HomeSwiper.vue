@@ -36,7 +36,6 @@
         methods: {
             imageLoad() {
                 if (!this.isLoad) {
-                    console.log('11111111');
                     this.$emit('swiper-image-load')
                     this.isLoad = true
                 }
