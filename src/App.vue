@@ -1,19 +1,19 @@
 <template>
-  <div id="app">
-    <keep-alive>
-      <router-view></router-view>
+  <div id="app" class="wrapper">
+    <keep-alive exclude="Detail">
+      <router-view/>
     </keep-alive>
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar/>
   </div>
 </template>
 
 <script>
-  import MainTabBar from 'components/content/tabbar/MainTabBar'
+  import MainTabBar from 'components/content/mainTabbar/MainTabBar'
 
   export default {
-    name: 'App',
+    name: 'app',
     components: {
-        MainTabBar
+      MainTabBar
     }
   }
 </script>
